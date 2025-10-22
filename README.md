@@ -41,12 +41,12 @@ Construir una herramienta analítica que identifique y segmente la clientela de 
 1. Clonar el repositorio: `git clone https://github.com/luis17871/seminario-proyecto-grupo1.git`
 2. Navegar al directorio: `cd seminario-proyecto-grupo1`
 3. Crear un entorno virtual (opcional pero recomendado): `python -m venv venv` y activarlo (`source venv/bin/activate` en Unix o `venv\Scripts\activate` en Windows).
-4. Instalar dependencias: `pip install -r requirements.txt` (crea este archivo si no existe, agregando `pandas`).
+4. Instalar dependencias: `pip install -r requirements.txt`.
 
 ## Uso
-- Ejecuta el script de carga de datos: `python scripts/01_data_loader.py`
+- Ejecutar el script de carga de datos: `python scripts/01_data_loader.py`
   - Esto carga `data/BASERETAIL.csv`, muestra las primeras 5 filas y la información del DataFrame.
-- En fases futuras: Usa la API o el dashboard (por implementar).
+- En fases futuras: Usar la API o el dashboard (por implementar).
 
 ## Áreas Técnicas Iniciales
 - Crear el repositorio en GitHub con `.gitignore` para Python. Responsable: Luis Caicedo.
