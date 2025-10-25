@@ -68,7 +68,7 @@ El proyecto sigue una arquitectura modular ETL (Extracción, Transformación y C
 ---
 ## 🧩 Flujo General del Proceso
 
-Carga → Limpieza → Imputación → Generación RFM → Guardado → Validación → Visualización
+Carga → Limpieza → Imputación → Generación RFM → Guardado
 
 ---
 ## ⚙️ Requisitos del Entorno
@@ -102,9 +102,6 @@ seminario-proyecto-grupo1/
 │   ├── imputation.py
 │   ├── data_new_features.py
 │   ├── data_saving.py
-│   ├── data_validation.py
-│   ├── data_visualization.py
-│   └── test_features_output.py
 │
 ├── main.py
 └── README.md
@@ -119,10 +116,6 @@ Resultados esperados:
 
 - `clientes_features.csv` → dataset final con segmentos RFM.
 
-Para validar los resultados:
-```
-python scripts/data_validation.py
-```
 ---
 ## Resultados Esperados
 
