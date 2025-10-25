@@ -23,6 +23,7 @@ def limpieza_nombres_columnas(df):
     print("Nombre de columnas limpias")
     return retail_columnas_renombradas
 
+
 def convertir_customerId_int(df):
     """
     convierte 'customer_id' de float64 a Int64
@@ -32,6 +33,7 @@ def convertir_customerId_int(df):
     df["customer_id"] = df["customer_id"].astype("Int64")
 
     return df
+
 
 def limpieza_ausentes_customerId(df):
     """
@@ -51,6 +53,7 @@ def limpieza_ausentes_customerId(df):
 
     return df_limpio_customerId
 
+
 def normalizar_product_description(df):
     """
     convierte a minúsculas y elimina espacios en blanco
@@ -61,6 +64,7 @@ def normalizar_product_description(df):
     df["product_description"] = df["product_description"].str.lower().str.strip()
 
     return df
+
 
 def limpiar_cancelaciones(df):
     """
@@ -81,6 +85,7 @@ def limpiar_cancelaciones(df):
 
     return df_limpio
 
+
 def limpiar_product_price_negativos_o_cero(df):
     """
     elimina filas con 'product_price' negativos o cero
@@ -97,6 +102,7 @@ def limpiar_product_price_negativos_o_cero(df):
 
     return df_limpio
 
+
 def reemplazar_EIRE(df):
     """
     reemplaza 'EIRE' por 'IRELAND' en la columna 'country'
@@ -105,4 +111,22 @@ def reemplazar_EIRE(df):
 
     df['country'] = df['country'].replace('EIRE', 'IRELAND')
 
+    return df
+
+def limpiar_datos(df):
+    """
+    Ejecuta la secuencia completa de limpieza llamando
+    a las funciones existentes en orden lógico.
+    """
+    print("\n[INFO] Iniciando limpieza general de datos...")
+
+    df = limpieza_nombres_columnas(df)
+    df = convertir_customerId_int(df)
+    df = limpieza_ausentes_customerId(df)
+    df = normalizar_product_description(df)
+    df = limpiar_cancelaciones(df)
+    df = limpiar_product_price_negativos_o_cero(df)
+    df = reemplazar_EIRE(df)
+
+    print("[OK] Limpieza completada correctamente.\n")
     return df

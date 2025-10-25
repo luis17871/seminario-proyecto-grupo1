@@ -1,42 +1,55 @@
-import os
+"""
+Archivo principal del pipeline de procesamiento de datos del proyecto:
+"Plataforma tecnológica financiera de factoring y confirming: liquidez para PYMES y emprendedores en Ecuador"
+"""
+
+# Importación de módulos
+
 from scripts.data_loader import cargar_datos
-from scripts.data_cleaning import (
-    limpieza_nombres_columnas,
-    convertir_customerId_int,
-    limpieza_ausentes_customerId,
-    normalizar_product_description,
-    limpiar_cancelaciones,
-    reemplazar_EIRE
-    )
+from scripts.data_cleaning import limpiar_datos
+from scripts.imputation import imputar_datos
+from scripts.data_new_features import generar_features_rfm
+from scripts.data_saving import guardar_datos_limpios
+import os
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_PATH = os.path.join(SCRIPT_DIR, "data", "BASERETAIL.csv")
+# Función principal
 
-# este archivo se está ejecutando directamente por el usuario o está siendo importado por otro script?
+def main():
+    print("\n==============================")
+    print(" INICIO DEL PIPELINE PRINCIPAL")
+    print("==============================\n")
+
+    # Cargar datos
+    ruta_datos = os.path.join("data", "BASERETAIL.csv")
+    print(f"[1/5] Cargando datos desde: {ruta_datos}")
+    df = cargar_datos(ruta_datos)
+
+    if df is None or df.empty:
+        print("❌ No se pudieron cargar los datos. Revisa la ruta o el archivo.")
+        return
+
+    # Limpieza de datos
+    print("[2/5] Aplicando limpieza...")
+    df_limpio = limpiar_datos(df)
+
+    # Imputación de valores faltantes
+    print("[3/5] Imputando valores faltantes...")
+    df_imputado = imputar_datos(df_limpio)
+
+    # Generación de características RFM
+    print("[4/5] Generando nuevas características (RFM)...")
+    df_features = generar_features_rfm(df_imputado)
+
+    # Guardado final de resultados
+    ruta_salida = os.path.join("data", "processed", "clientes_features.csv")
+    print("[5/5] Guardando resultados finales...")
+    guardar_datos_limpios(df_features, ruta_salida)
+
+    print("\n==============================")
+    print(" PIPELINE COMPLETADO CON ÉXITO ✅")
+    print("==============================\n")
+
+# Ejecución directa
+
 if __name__ == "__main__":
-    # indica dónde está el script actual
-    print(f"Ejecutando script desde: {os.path.abspath(__file__)}")
-
-    # llama a la función de arriba para cargar el csv
-    dataframe_retail = cargar_datos(DATA_PATH)
-
-    if dataframe_retail is not None:
-        # Módulo de limpieza de datos
-        print("\n---Iniciando Limpieza de datos---")
-
-        df_limpio = limpieza_nombres_columnas(dataframe_retail)
-        df_limpio = convertir_customerId_int(df_limpio)
-        df_limpio = limpieza_ausentes_customerId(df_limpio)
-        df_limpio = normalizar_product_description(df_limpio)
-        df_limpio = limpiar_cancelaciones(df_limpio)
-        df_limpio = reemplazar_EIRE(df_limpio)
-
-        print("\n---Finalizando Limpieza de datos---")
-
-        print("\n---Primeras 5 filas---")
-        print(df_limpio.head())
-
-        print("\n---Información del DataFrame---")
-        df_limpio.info(show_counts=True)
-    else:
-        print("No se pudo cargar el DataFrame. Terminando el programa.")
+    main()

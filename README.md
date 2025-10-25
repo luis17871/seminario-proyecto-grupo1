@@ -53,5 +53,89 @@ Construir una herramienta analítica que identifique y segmente la clientela de 
 - Redactar el archivo `README.md` inicial con el plan de proyecto.
 - Desarrollar el script `scripts/01_data_loader.py` para cargar el dataset usando Pandas.
 
-## Estado del Proyecto
-En desarrollo inicial. Próximos pasos: Implementar limpieza de datos, RFM y API.
+## Arquitectura actual del Proyecto
+
+El proyecto sigue una arquitectura modular ETL (Extracción, Transformación y Carga), organizada dentro de la carpeta `scripts/`.
+
+| Etapa                                | Archivo                 | Descripción                                                                |
+| ------------------------------------ | ----------------------- | -------------------------------------------------------------------------- |
+| **1️⃣ Carga de Datos**               | `data_loader.py`        | Carga el dataset base (`BASERETAIL.csv`) y lo convierte en un DataFrame.   |
+| **2️⃣ Limpieza de Datos**            | `data_cleaning.py`      | Corrige nombres, tipos, y elimina facturas canceladas o precios negativos. |
+| **3️⃣ Imputación de Valores**        | `imputation.py`         | Rellena valores faltantes: promedio (numéricos) o moda (categóricos).      |
+| **4️⃣ Generación de Features (RFM)** | `data_new_features.py`  | Calcula métricas RFM y segmenta clientes según reglas de negocio.          |
+| **5️⃣ Guardado de Resultados**       | `data_saving.py`        | Guarda los resultados procesados en `data/processed/`.                     |
+
+---
+## 🧩 Flujo General del Proceso
+
+Carga → Limpieza → Imputación → Generación RFM → Guardado → Validación → Visualización
+
+---
+## ⚙️ Requisitos del Entorno
+
+**Python 3.9 o superior**
+
+Instalar dependencias:
+```
+pip install -r requirements.txt
+```
+Librerías principales:
+- `pandas`
+- `numpy`
+- `scikit-learn`
+- `matplotlib`
+- `missingno`
+---
+## Estructura del Proyecto
+
+```
+seminario-proyecto-grupo1/ 
+│
+├── data/
+│   ├── BASERETAIL.csv
+│   └── processed/
+│       └── clientes_features.csv
+│
+├── scripts/
+│   ├── data_loader.py
+│   ├── data_cleaning.py
+│   ├── imputation.py
+│   ├── data_new_features.py
+│   ├── data_saving.py
+│   ├── data_validation.py
+│   ├── data_visualization.py
+│   └── test_features_output.py
+│
+├── main.py
+└── README.md
+```
+---
+## Ejecución del Proyecto
+Ejecutar todo el proceso:
+```
+python main.py
+```
+Resultados esperados:
+
+- `clientes_features.csv` → dataset final con segmentos RFM.
+
+Para validar los resultados:
+```
+python scripts/data_validation.py
+```
+---
+## Resultados Esperados
+
+| Segmento       | Descripción                                     | RFM Promedio |
+| -------------- | ----------------------------------------------- | ------------ |
+| **VIP**        | Clientes de alto valor, frecuentes y recientes. | 11.07        |
+| **Leal**       | Compran con frecuencia y estabilidad.           | 8.38         |
+| **Prometedor** | Clientes con potencial de crecimiento.          | 6.87         |
+| **En Riesgo**  | Han dejado de comprar recientemente.            | 4.24         |
+| **Durmiente**  | Actividad mínima o antigua.                     | 3.00         |
+
+---
+## Próximos Pasos
+
+- Integrar API REST para exponer resultados.
+- Crear un dashboard interactivo con Streamlit o Dash.
