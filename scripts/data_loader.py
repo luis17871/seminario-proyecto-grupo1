@@ -1,13 +1,14 @@
 import pandas as pd
 import os
 
+print("Inicio data loader 1.0")
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DATA_PATH = os.path.join(SCRIPT_DIR, "..", "data", "BASERETAIL.csv")
 
 def cargar_datos(path):
     print(f"Cargando datos desde {path}...")
-    
     try:
         df = pd.read_csv(path)
         print("Datos cargados exitosamente.")
