@@ -8,8 +8,9 @@ Archivo principal del pipeline de procesamiento de datos del proyecto:
 from scripts.data_loader import cargar_datos
 from scripts.data_cleaning import limpiar_datos
 from scripts.imputation import imputar_datos
-from scripts.data_new_features import generar_features_rfm
+# from scripts.data_new_features import generar_features_rfm
 from scripts.data_saving import guardar_datos_limpios
+from scripts.data_new_feautures_edit import generar_indicadores_rfm
 import os
 
 # Función principal
@@ -33,17 +34,23 @@ def main():
     df_limpio = limpiar_datos(df)
 
     # Imputación de valores faltantes
-    print("[3/5] Imputando valores faltantes...")
-    df_imputado = imputar_datos(df_limpio)
+    # print("[3/5] Imputando valores faltantes...")
+    # df_imputado = imputar_datos(df_limpio)
 
     # Generación de características RFM
+    # print("[4/5] Generando nuevas características (RFM)...")
+    # df_features = generar_features_rfm(df_imputado)
+
+    # Generación de características RFM Nuevo
     print("[4/5] Generando nuevas características (RFM)...")
-    df_features = generar_features_rfm(df_imputado)
+    df_features = generar_indicadores_rfm(df_limpio)
 
     # Guardado final de resultados
-    ruta_salida = os.path.join("data", "processed", "clientes_features.csv")
+    ruta_salida = os.path.join("data", "processed", "clientes_limpios.csv")
+    ruta_salida_ml = os.path.join("data", "processed", "metricas_clientes_ml.csv")
     print("[5/5] Guardando resultados finales...")
-    guardar_datos_limpios(df_features, ruta_salida)
+    guardar_datos_limpios(df_limpio, ruta_salida)
+    guardar_datos_limpios(df_features, ruta_salida_ml)
 
     print("\n==============================")
     print(" PIPELINE COMPLETADO CON ÉXITO ✅")

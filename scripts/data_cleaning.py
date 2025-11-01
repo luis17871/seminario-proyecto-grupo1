@@ -34,6 +34,26 @@ def convertir_customerId_int(df):
 
     return df
 
+def convertir_product_quantity_int(df):
+    """
+    convierte 'product_quantity' a int
+    """
+    print("Convirtiendo 'product_quantity' a int...")
+
+    df["product_quantity"] = df["product_quantity"].astype("Int64")
+
+    return df
+
+def convertir_product_code_str(df):
+    """
+    convierte 'product_code' a string
+    """
+    print("Convirtiendo 'product_code' a string...")
+
+    df["product_code"] = df["product_code"].astype(str)
+
+    return df
+
 
 def limpieza_ausentes_customerId(df):
     """
@@ -85,6 +105,16 @@ def limpiar_cancelaciones(df):
 
     return df_limpio
 
+def normalizar_product_price(df):
+    """
+    convierte 'product_price' a float y redondea a 2 decimales
+    """
+    print("Normalizando 'product_price' a float con 2 decimales...")
+
+    df["product_price"] = df["product_price"].astype(float).round(2)
+
+    return df
+
 
 def limpiar_product_price_negativos_o_cero(df):
     """
@@ -109,7 +139,42 @@ def reemplazar_EIRE(df):
     """
     print("Reemplazando 'EIRE' por 'IRELAND' en la columna 'country'...")
 
-    df['country'] = df['country'].replace('EIRE', 'IRELAND')
+    df['country'] = df['country'].replace('EIRE', 'Ireland')
+
+    return df
+
+def normalizar_fecha_invoice_date(df):
+    """
+    convierte 'invoice_date' a formato datetime sin hora (compatible con pandas)
+    """
+    print("Normalizando 'invoice_date' a formato datetime sin hora...")
+
+    df["invoice_date"] = pd.to_datetime(df["invoice_date"]).dt.normalize()
+
+    return df
+
+def limpieza_product_code(df):
+    """
+    limpia la columna 'product_code' eliminando espacios en blanco,
+    convirtiendo a mayúsculas y eliminando filas que contengan datos de pruebas,
+    de Posting, de manuales, cargos bancarios
+    """
+    print("Limpiando 'product_code'...")
+
+    filas_antes = len(df)
+    # Palabras a buscar que contengan estos términos
+    palabras_contiene = ['POST', 'ADJUST', 'BANK', 'TEST', 'DOT']
+    # Códigos exactos a eliminar
+    codigos_exactos = ['D', 'C2', 'M']
+    # Crear máscara combinada para palabras que contienen
+    mascara_contiene = df["product_code"].str.contains('|'.join(palabras_contiene), na=False)
+    # Crear máscara combinada para códigos exactos
+    mascara_exactos = df["product_code"].isin(codigos_exactos)
+    # Filtrar en una sola operación
+    df = df[~(mascara_contiene | mascara_exactos)].reset_index(drop=True)
+    filas_despues = len(df)
+
+    print(f"Filas eliminadas en este paso: {filas_antes - filas_despues}")
 
     return df
 
@@ -121,12 +186,17 @@ def limpiar_datos(df):
     print("\n[INFO] Iniciando limpieza general de datos...")
 
     df = limpieza_nombres_columnas(df)
-    df = convertir_customerId_int(df)
+    df = normalizar_fecha_invoice_date(df)
     df = limpieza_ausentes_customerId(df)
+    df = convertir_customerId_int(df)
+    df = convertir_product_quantity_int(df)
+    df = convertir_product_code_str(df)
     df = normalizar_product_description(df)
+    df = normalizar_product_price(df)
     df = limpiar_cancelaciones(df)
     df = limpiar_product_price_negativos_o_cero(df)
     df = reemplazar_EIRE(df)
+    df = limpieza_product_code(df)
 
     print("[OK] Limpieza completada correctamente.\n")
     return df
