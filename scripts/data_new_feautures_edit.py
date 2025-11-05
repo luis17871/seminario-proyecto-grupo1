@@ -66,7 +66,7 @@ def construir_rfm(db_recency, db_frecuency, db_monetary):
     # Asignación de pesos ponderados y cálculo del RFM Score
     df_rfm['RFM_Score'] = 0.15 * df_rfm['R_rank_norm'] + 0.28 * df_rfm['F_rank_norm'] + 0.57 * df_rfm['M_rank_norm']
     # Asignación de escala de 0 a 5 para reducir el rango del RFM Score y su mejora en la segmentación
-    df_rfm['RFM_Score'] *= 0.05
+    # df_rfm['RFM_Score'] *= 0.05
     
     # Redondear a 2 decimales los campos normalizados y el score final
     df_rfm['R_rank_norm'] = df_rfm['R_rank_norm'].round(2)
