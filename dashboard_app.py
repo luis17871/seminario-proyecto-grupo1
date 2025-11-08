@@ -17,7 +17,7 @@ def local_css(file_path):
         st.stop()
 
 # Construye la ruta correcta al archivo CSS
-CSS_PATH = os.path.join(os.path.dirname(__file__), "..", "assets", "styles.css")
+CSS_PATH = os.path.join(os.path.dirname(__file__), "assets", "styles.css")
 local_css(CSS_PATH)  # Aplica todos los estilos desde styles.css
 
 # CONFIGURACIÓN
@@ -31,7 +31,7 @@ st.markdown("<h1 class='animate-in'>Dashboard de Análisis RFM de Clientes</h1>"
 st.markdown("<p class='animate-in'>Seminario Complexivo | UNIANDES</p>", unsafe_allow_html=True)
 
 # RUTAS DE DATOS
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_PATH_CLIENTES = os.path.join(BASE_DIR, "data", "processed", "clientes_limpios.csv")
 DATA_PATH_METRICAS = os.path.join(BASE_DIR, "data", "processed", "metricas_clientes_ml.csv")
 
