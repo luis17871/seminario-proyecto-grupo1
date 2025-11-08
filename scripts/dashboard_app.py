@@ -1,7 +1,14 @@
+import sys
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import os
+import joblib
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SCRIPTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'scripts')
+DATA_PATH = os.path.join(BASE_DIR, "data", "processed", "metricas_clientes_ml.csv")
+sys.path.insert(0, SCRIPTS_DIR)
 
 # CARGAR ESTILOS
 def local_css(file_path):
@@ -23,7 +30,7 @@ local_css(CSS_PATH)  # Aplica todos los estilos desde styles.css
 # CONFIGURACIÓN
 st.set_page_config(
     page_title="Dashboard RFM", 
-    layout="wide"                
+    layout="wide"
 )
 
 # TÍTULO PRINCIPAL
@@ -81,6 +88,14 @@ def limpiar_grafico(fig):
         title_font=dict(color="#e2e8f0"), tickfont=dict(color="#e2e8f0")
     )
     return fig
+
+@st.cache_data
+def cargar_archivos(path):
+    """
+    Carga un archivo .joblib (Modelo o encoder).
+    """
+    print(f"\n[CARGA] Cargando archivo: {path}")
+    return joblib.load(path)
 
 # PESTAÑAS
 tab1, tab2 = st.tabs(["Análisis Exploratorio (EDA)", "Análisis RFM (Métricas)"])
