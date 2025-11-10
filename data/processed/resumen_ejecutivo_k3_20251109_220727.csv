@@ -1,0 +1,4 @@
+cluster_id,nombre_segmento,estrategia_comercial,n_clientes,porcentaje_total
+0,Clientes en riesgo,"Contacto directo para identificar problemas, descuentos agresivos de recuperacion, ofertas ""ultima oportunidad"", mejora de condiciones comerciales, visitas comerciales",2929,50.1%
+1,Clientes Leales,"Programa de fidelizacion con beneficios progresivos, descuentos por volumen y promociones exclusivas, cross-selling de productos complementarios, invitacion a programa VIP",2905,49.6%
+2,Clientes VIP,"Gerente de cuenta dedicado, condiciones comerciales premium y precios especiales, acceso prioritario a nuevos productos, programas de fidelizacion exclusivos",18,0.3%
