@@ -30,10 +30,12 @@ st.set_page_config(
 st.markdown("<h1 class='animate-in'>Dashboard de Análisis RFM de Clientes</h1>", unsafe_allow_html=True)
 st.markdown("<p class='animate-in'>Seminario Complexivo | UNIANDES</p>", unsafe_allow_html=True)
 
+
 # RUTAS DE DATOS
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_PATH_CLIENTES = os.path.join(BASE_DIR, "data", "processed", "clientes_limpios.csv")
 DATA_PATH_METRICAS = os.path.join(BASE_DIR, "data", "processed", "metricas_clientes_ml.csv")
+
 
 @st.cache_data
 def cargar_datos(path):
