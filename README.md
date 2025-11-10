@@ -128,7 +128,86 @@ Resultados esperados:
 | **Durmiente**  | Actividad mínima o antigua.                     | 3.00         |
 
 ---
-## Próximos Pasos
 
-- Integrar API REST para exponer resultados.
-- Crear un dashboard interactivo con Streamlit o Dash.
+## Modelado y Dashboard Interactivo
+
+Con la evolución del proyecto, se incorporó una fase de modelado de datos y visualización interactiva, ampliando el alcance del análisis RFM hacia una segmentación automática de clientes mediante algoritmos de machine learning y una interfaz visual desarrollada en Streamlit.
+
+Nuevos Módulos Agregados
+
+Etapa	Archivo	Descripción
+
+6️⃣ Preprocesamiento de Datos ML	model_preprocessing.py	Escala los datos, aplica reducción dimensional (PCA) y determina el número óptimo de clusters usando Elbow y Silhouette.
+
+7️⃣ Entrenamiento del Modelo	model_training.py	Entrena el modelo K-Means, calcula métricas (Silhouette, Davies-Bouldin, Calinski-Harabasz) y asigna etiquetas de segmento.
+
+8️⃣ Guardado del Modelo	model_saving.py	Guarda los modelos (KMeans, Scaler, PCA) en formato .joblib y exporta resultados segmentados a CSV.
+
+9️⃣ Orquestador General	main.py	Ejecuta de manera secuencial todo el pipeline ETL + ML, generando los archivos finales procesados.
+
+🔟 Dashboard Interactivo	dashboard_app.py	Implementado con Streamlit y Plotly, permite explorar clientes, ventas, métricas RFM y clusters mediante visualizaciones dinámicas.
+
+Dashboard Streamlit
+
+El dashboard cuenta con dos secciones principales:
+
+Análisis Exploratorio (EDA):
+
+Indicadores clave de ventas totales, clientes, facturas y productos.
+
+Evolución de ventas por mes y país.
+
+Productos más vendidos.
+
+Mapa geográfico de ventas.
+
+Análisis RFM:
+
+Distribución de métricas Recency, Frequency y Monetary.
+
+Correlaciones y relaciones entre variables RFM.
+
+Top 10 clientes con mayor RFM Score.
+
+Para ejecutar el dashboard:
+
+streamlit run dashboard_app.py
+
+## 📊 Dashboard Interactivo — Streamlit Cloud
+
+El proyecto cuenta con un **dashboard analítico en Streamlit** para visualizar los resultados de la segmentación de clientes mediante métricas RFM (Recency, Frequency, Monetary).
+
+### 🌐 Acceso público
+👉 [**Abrir Dashboard en Streamlit Cloud**](https://seminario-proyecto-grupo1-hfknpwukd8k7fwfmdnup2gk.streamlit.app)
+
+---
+
+### 🧠 Funcionalidades principales
+
+#### 🔍 Análisis Exploratorio (EDA)
+- Distribución de las métricas RFM mediante histogramas y boxplots.  
+- Correlación entre variables R, F y M.  
+- Evolución del comportamiento de clientes por segmento.  
+- Identificación de valores atípicos y patrones de compra.
+
+#### 💡 Análisis RFM (Métricas)
+- Clasificación de clientes según su puntuación RFM.  
+- Visualización de histogramas para *Recency*, *Frequency* y *Monetary*.  
+- Mapa de calor de correlaciones entre métricas.  
+- Indicadores clave de clientes activos, ventas y segmentos.
+
+---
+
+### 🧩 Integración con el pipeline
+El dashboard consume los **datasets procesados** generados por el pipeline ETL y el modelo K-Means entrenado, permitiendo explorar visualmente:
+
+- `data/processed/clientes_limpios.csv`  
+- `data/processed/metricas_clientes_ml.csv`  
+- `data/processed/clientes_mayoristas_segmentados_k3.csv`
+
+---
+
+### ⚙️ Ejecución local (opcional)
+Para ejecutarlo en tu entorno local:
+```bash
+streamlit run dashboard_app.py
