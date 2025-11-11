@@ -11,11 +11,6 @@ SCRIPTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'scripts'
 DATA_PATH = os.path.join(BASE_DIR, "data", "processed", "metricas_clientes_ml.csv")
 sys.path.insert(0, SCRIPTS_DIR)
 
-# las URLs 
-API_BASE_URL = "https://seminario-proyecto-grupo1-hfknpwuk8kf7wfrmdup2gk.streamlit.app"
-API_URL_FILTROS = f"{API_BASE_URL}/eda/filters"
-API_URL_DATOS_EDA = f"{API_BASE_URL}/eda/data_specific_filters"
-
 # CARGAR ESTILOS
 def local_css(file_path):
     """
@@ -582,14 +577,17 @@ with tab2:
     import requests
     
     # CONFIGURACION DE LA API
-    API_URL = "https://seminario-proyecto-grupo1-hfknpwuk8kf7wfrmdup2gk.streamlit.app"
+    # las URLs 
+    API_BASE_URL = "https://seminario-proyecto-grupo1-hfknpwuk8kf7wfrmdup2gk.streamlit.app"
+    API_URL_SUMMARY = f"{API_BASE_URL}/segments/summary"
+    API_URL_CLASSIFY = f"{API_BASE_URL}/segments/classify"
     
     # FUNCION PARA VERIFICAR SI LA API ESTA ACTIVA
     @st.cache_data(ttl=60)
     def verificar_api():
         """Verifica si la API esta activa"""
         try:
-            response = requests.get(f"{API_URL}/health", timeout=2)
+            response = requests.get(f"{API_BASE_URL}/health", timeout=2)
             return response.status_code == 200
         except:
             return False
@@ -599,7 +597,7 @@ with tab2:
     def obtener_resumen_segmentos():
         """Obtiene el resumen de todos los segmentos desde la API"""
         try:
-            response = requests.get(f"{API_URL}/segments/summary", timeout=5)
+            response = requests.get(f"{API_URL_SUMMARY}", timeout=5)
             if response.status_code == 200:
                 return response.json()
             return None
@@ -615,7 +613,7 @@ with tab2:
                 "frequency": int(frequency),
                 "monetary": float(monetary)
             }
-            response = requests.post(f"{API_URL}/segments/classify", json=datos, timeout=5)
+            response = requests.post(f"{API_URL_CLASSIFY}", json=datos, timeout=5)
             if response.status_code == 200:
                 return response.json()
             return None
