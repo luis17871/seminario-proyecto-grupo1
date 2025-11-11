@@ -467,20 +467,20 @@ def health_check():
     }
 
 
-# ============================================================================
-# EJECUCION
-# ============================================================================
+# # ============================================================================
+# # EJECUCION
+# # ============================================================================
 
-if __name__ == "__main__":
-    import uvicorn
+# if __name__ == "__main__":
+#     import uvicorn
     
-    print("\n" + "="*80)
-    print("INICIANDO API DE SEGMENTACION DE CLIENTES")
-    print("="*80)
-    print("\nEndpoints disponibles:")
-    print("  - http://localhost:8000/segments/summary")
-    print("  - http://localhost:8000/segments/classify")
-    print("  - http://localhost:8000/docs (documentacion interactiva)")
-    print("\n" + "="*80 + "\n")
+#     print("\n" + "="*80)
+#     print("INICIANDO API DE SEGMENTACION DE CLIENTES")
+#     print("="*80)
+#     print("\nEndpoints disponibles:")
+#     print("  - http://localhost:8000/segments/summary")
+#     print("  - http://localhost:8000/segments/classify")
+#     print("  - http://localhost:8000/docs (documentacion interactiva)")
+#     print("\n" + "="*80 + "\n")
     
-    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+#     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
