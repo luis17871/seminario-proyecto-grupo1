@@ -581,6 +581,7 @@ with tab2:
     API_BASE_URL = "https://seminario-proyecto-grupo1-hfknpwuk8kf7wfrmdup2gk.streamlit.app"
     API_URL_SUMMARY = f"{API_BASE_URL}/segments/summary"
     API_URL_CLASSIFY = f"{API_BASE_URL}/segments/classify"
+    print(f"\n[API] Base URL: {API_BASE_URL}")
     
     # FUNCION PARA VERIFICAR SI LA API ESTA ACTIVA
     @st.cache_data(ttl=60)
