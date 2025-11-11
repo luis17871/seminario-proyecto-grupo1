@@ -582,7 +582,9 @@ with tab2:
     API_URL_SUMMARY = f"{API_BASE_URL}/summary"
     API_URL_CLASSIFY = f"{API_BASE_URL}/classify"
     st.write(f"\n[API] Base URL: {API_BASE_URL}")
-    
+    st.write(f"\n[API] Base summary: {API_URL_SUMMARY}")
+    st.write(f"\n[API] Base classify: {API_URL_CLASSIFY}")
+
     # FUNCION PARA VERIFICAR SI LA API ESTA ACTIVA
     @st.cache_data(ttl=60)
     def verificar_api():
