@@ -12,6 +12,7 @@ Fecha: Noviembre 2025
 """
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import Dict, List
 import pandas as pd
@@ -29,6 +30,15 @@ app = FastAPI(
     title="API de Segmentacion de Clientes Mayoristas",
     description="API para obtener resumen de segmentos y clasificar nuevos clientes",
     version="1.0.0"
+)
+
+# Configurar CORS para permitir peticiones desde cualquier origen
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite todos los origenes (para produccion, especifica los dominios)
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos los metodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permite todos los headers
 )
 
 # Directorios
