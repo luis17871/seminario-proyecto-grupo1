@@ -470,7 +470,7 @@ with tab2:
     
     # CONFIGURACION DE LA API
     # las URLs 
-    API_BASE_URL = "https://seminario-proyecto-grupo1-hfknpwuk8kf7wfrmdup2gk.streamlit.app"
+    API_BASE_URL = "https://api-segmentacion-560041103472.us-central1.run.app"
     API_URL_SUMMARY = f"{API_BASE_URL}/segments/summary"
     API_URL_CLASSIFY = f"{API_BASE_URL}/segments/classify"
 
