@@ -340,7 +340,7 @@ def root():
     }
 
 
-@app.get("segments/summary", response_model=SegmentosResponse, tags=["Segmentos"])
+@app.get("/segments/summary", response_model=SegmentosResponse, tags=["Segmentos"])
 def obtener_resumen_segmentos():
     """
     Obtiene un resumen de las caracteristicas de cada segmento
@@ -408,7 +408,7 @@ def obtener_resumen_segmentos():
         raise HTTPException(status_code=500, detail=f"Error al obtener resumen: {str(e)}")
 
 
-@app.post("segments/classify", response_model=ClienteClasificado, tags=["Segmentos"])
+@app.post("/segments/classify", response_model=ClienteClasificado, tags=["Segmentos"])
 def clasificar_nuevo_cliente(cliente: ClienteInput):
     """
     Clasifica un nuevo cliente en un segmento basado en sus datos RFM
