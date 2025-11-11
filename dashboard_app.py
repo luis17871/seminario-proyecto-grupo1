@@ -625,7 +625,7 @@ with tab2:
     api_activa = verificar_api()
     
     if api_activa:
-        st.success("✅ API de Segmentacion Conectada")
+        st.success(f"✅ API de Segmentacion Conectada URL: `{API_BASE_URL}`, URL Resumen: `{API_URL_SUMMARY}`, URL Clasificacion: `{API_URL_CLASSIFY}`")
     else:
         st.warning("⚠️ API de Segmentacion no disponible. Inicia la API con: `python api_segmentacion.py`")
     
