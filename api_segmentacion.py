@@ -175,15 +175,16 @@ def cargar_modelos():
         df_segmentados = pd.read_csv(segmentados_path)
         logger.info(f"? Datos segmentados cargados: {len(df_segmentados)} clientes")
         
-        # Cargar resumen ejecutivo
-        resumen_files = sorted(DATA_DIR.glob("resumen_ejecutivo_k3_*.csv"))
-        if resumen_files:
-            resumen_path = resumen_files[-1]  # Tomar el mas reciente
-        else:
-            resumen_path = DATA_DIR / "resumen_ejecutivo_k3.csv"
+        # Cargar resumen ejecutivo (priorizar archivo sin timestamp)
+        resumen_path = DATA_DIR / "resumen_ejecutivo_k3.csv"
         
         if not resumen_path.exists():
-            raise FileNotFoundError(f"Resumen ejecutivo no encontrado en {resumen_path}")
+            # Si no existe el archivo sin timestamp, buscar el mas reciente con timestamp
+            resumen_files = sorted(DATA_DIR.glob("resumen_ejecutivo_k3_*.csv"))
+            if resumen_files:
+                resumen_path = resumen_files[-1]
+            else:
+                raise FileNotFoundError(f"Resumen ejecutivo no encontrado en {DATA_DIR}")
         
         df_resumen = pd.read_csv(resumen_path)
         segmentos_info = df_resumen.to_dict('records')
