@@ -11,6 +11,11 @@ SCRIPTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'scripts'
 DATA_PATH = os.path.join(BASE_DIR, "data", "processed", "metricas_clientes_ml.csv")
 sys.path.insert(0, SCRIPTS_DIR)
 
+# las URLs 
+API_BASE_URL = "https://seminario-proyecto-grupo1-hfknpwuk8kf7wfrmdup2gk.streamlit.app"
+API_URL_FILTROS = f"{API_BASE_URL}/eda/filters"
+API_URL_DATOS_EDA = f"{API_BASE_URL}/eda/data_specific_filters"
+
 # CARGAR ESTILOS
 def local_css(file_path):
     """
@@ -577,7 +582,7 @@ with tab2:
     import requests
     
     # CONFIGURACION DE LA API
-    API_URL = "http://localhost:8000"
+    API_URL = "https://seminario-proyecto-grupo1-hfknpwuk8kf7wfrmdup2gk.streamlit.app"
     
     # FUNCION PARA VERIFICAR SI LA API ESTA ACTIVA
     @st.cache_data(ttl=60)
