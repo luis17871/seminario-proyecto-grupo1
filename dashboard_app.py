@@ -600,7 +600,7 @@ with tab2:
     def obtener_resumen_segmentos():
         """Obtiene el resumen de todos los segmentos desde la API"""
         try:
-            response = requests.get(f"{API_URL_SUMMARY}", timeout=5)
+            response = requests.get(API_URL_SUMMARY, timeout=5)
             if response.status_code == 200:
                 return response.json()
             return None
@@ -616,7 +616,7 @@ with tab2:
                 "frequency": int(frequency),
                 "monetary": float(monetary)
             }
-            response = requests.post(f"{API_URL_CLASSIFY}", json=datos, timeout=5)
+            response = requests.post(API_URL_CLASSIFY, json=datos, timeout=5)
             if response.status_code == 200:
                 return response.json()
             return None
