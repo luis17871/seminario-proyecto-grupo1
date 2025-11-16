@@ -622,4 +622,4 @@ El proyecto implementa todas las actividades planteadas en el caso:
    * Resumen de los segmentos encontrados.
    * Visualización interactiva de los clusters:
      * Gráfico de dispersión 3D en el espacio RFM.
-   * Herramienta para que el gerente de cuentas ingrese datos de RFM de un cliente y obtenga su segmento.
+   * Herramienta para que el gerente de cuentas ingrese datos de RFM de un cliente y obtenga su segmento. 
