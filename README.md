@@ -9,7 +9,7 @@
 ### **Tema del caso** 
 Segmentación de Clientes para una Cadena de Retail
 
-### **Antecedentes:** 
+### **Antecedentes** 
 El dataset a utilizar (Online Retail II) contiene el historial de transacciones reales de una empresa de comercio electrónico con sede en el Reino Unido, registradas entre 2009 y 2011. La compañía vende principalmente regalos y artículos para el hogar a clientes mayoristas (otras empresas). Como en cualquier negocio, no todos los clientes son iguales, y la gerencia necesita una forma, basada en datos, para comprender su base de clientes e identificar a los más valiosos para optimizar sus esfuerzos de marketing y la gestión de sus cuentas clave.
 
 ### **Objetivo**
