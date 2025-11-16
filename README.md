@@ -6,11 +6,14 @@
 
 ## 🧭 Tema del caso y Objetivo
 
-**Tema del caso:** Segmentación de Clientes para una Cadena de Retail
+### **Tema del caso** 
+Segmentación de Clientes para una Cadena de Retail
 
-**Antecedentes:** El dataset a utilizar (Online Retail II) contiene el historial de transacciones reales de una empresa de comercio electrónico con sede en el Reino Unido, registradas entre 2009 y 2011. La compañía vende principalmente regalos y artículos para el hogar a clientes mayoristas (otras empresas). Como en cualquier negocio, no todos los clientes son iguales, y la gerencia necesita una forma, basada en datos, para comprender su base de clientes e identificar a los más valiosos para optimizar sus esfuerzos de marketing y la gestión de sus cuentas clave.
+### **Antecedentes:** 
+El dataset a utilizar (Online Retail II) contiene el historial de transacciones reales de una empresa de comercio electrónico con sede en el Reino Unido, registradas entre 2009 y 2011. La compañía vende principalmente regalos y artículos para el hogar a clientes mayoristas (otras empresas). Como en cualquier negocio, no todos los clientes son iguales, y la gerencia necesita una forma, basada en datos, para comprender su base de clientes e identificar a los más valiosos para optimizar sus esfuerzos de marketing y la gestión de sus cuentas clave.
 
-**Objetivo:** Construir un sistema analítico que utilice técnicas de clustering (K-Means) para segmentar a los clientes mayoristas en grupos coherentes basados en su comportamiento de compra (Recencia, Frecuencia, Valor Monetario - RFM). El objetivo es proveer a la empresa una herramienta para identificar a sus "Clientes VIP", "Clientes leales", "Clientes en Riesgo", etc.
+### **Objetivo**
+Construir un sistema analítico que utilice técnicas de clustering (K-Means) para segmentar a los clientes mayoristas en grupos coherentes basados en su comportamiento de compra (Recencia, Frecuencia, Valor Monetario - RFM). El objetivo es proveer a la empresa una herramienta para identificar a sus "Clientes VIP", "Clientes leales", "Clientes en Riesgo", etc.
 
 ## 📚 Descripción general del proyecto
 
@@ -147,7 +150,7 @@ seminario-proyecto-grupo1/
 ├── scripts/
 │   ├── data_loader.py               # Carga BASERETAIL.csv
 │   ├── data_cleaning.py             # Limpieza y normalización del dataset
-│   ├── imputation.py                # Imputación genérica de valores nulos (opcional)
+│   ├── imputation.py                # Imputación genérica de valores nulos
 │   ├── data_new_feautures_edit.py   # Cálculo detallado de RFM + RFM_Score
 │   ├── data_new_features.py         # Versión alternativa basada en cuantiles y reglas
 │   ├── data_saving.py               # Funciones para guardar CSV procesados
@@ -156,7 +159,7 @@ seminario-proyecto-grupo1/
 │   └── model_saving.py              # Guardado de modelos y reportes ejecutivos
 │
 ├── assets/
-│   └── styles.css                   # Estilos personalizados para el dashboard (tema oscuro)
+│   └── styles.css                   # Estilos personalizados para el dashboard
 │
 ├── main.py                          # Pipeline general de datos (ETL + RFM)
 ├── train.py                         # Pipeline general de entrenamiento y segmentación
@@ -596,7 +599,7 @@ Para desarrollo local puedes cambiar esa URL a:
 API_BASE_URL = "http://localhost:8000"
 ```
 
-## 📌 Actividades cubiertas (según enunciado original)
+## 📌 Actividades cubiertas
 
 El proyecto implementa todas las actividades planteadas en el caso:
 
