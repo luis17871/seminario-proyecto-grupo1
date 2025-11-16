@@ -596,7 +596,8 @@ Para desarrollo local puedes cambiar esa URL a:
 API_BASE_URL = "http://localhost:8000"
 ```
 
-## 📌 Actividades cubiertas
+## 📌 Actividades cubiertas (según enunciado original)
+
 El proyecto implementa todas las actividades planteadas en el caso:
 
 1. **Pipeline:**
@@ -622,4 +623,4 @@ El proyecto implementa todas las actividades planteadas en el caso:
    * Resumen de los segmentos encontrados.
    * Visualización interactiva de los clusters:
      * Gráfico de dispersión 3D en el espacio RFM.
-   * Herramienta para que el gerente de cuentas ingrese datos de RFM de un cliente y obtenga su segmento. 
+   * Herramienta para que el gerente de cuentas ingrese datos de RFM de un cliente y obtenga su segmento.

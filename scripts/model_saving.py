@@ -13,7 +13,6 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from typing import Dict, List
-from datetime import datetime
 
 
 def crear_directorios_salida(directorios: List[str]) -> None:
@@ -169,9 +168,9 @@ def generar_resumen_ejecutivo_csv(
     # Crear DataFrame y guardar
     df_resumen = pd.DataFrame(resumen_data)
     
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    csv_path = os.path.join(directorio_reportes, f'resumen_ejecutivo_k{n_clusters}_{timestamp}.csv')
+    csv_path = os.path.join(directorio_reportes, f'resumen_ejecutivo_k{n_clusters}.csv')
     
+    # Guardar archivo sin timestamp para facilitar el acceso desde la API
     df_resumen.to_csv(csv_path, index=False, encoding='utf-8')
     
     print(f"\n[RESUMEN CSV] Resumen ejecutivo generado:")
@@ -220,9 +219,8 @@ def generar_acciones_comerciales_por_cluster(
         {cluster_id: interp['estrategia_comercial'] for cluster_id, interp in interpretaciones.items()}
     )
     
-    # Guardar
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    csv_path = os.path.join(directorio_reportes, f'acciones_comerciales_k{n_clusters}_{timestamp}.csv')
+    # Guardar archivo sin timestamp para facilitar el acceso
+    csv_path = os.path.join(directorio_reportes, f'acciones_comerciales_k{n_clusters}.csv')
     
     df_acciones.to_csv(csv_path, index=False, encoding='utf-8')
     
